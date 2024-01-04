@@ -20,7 +20,7 @@ The cdk.json file tells the CDK Toolkit how to execute your app.
 $ pnpm install
 
 // install lambda layer dependencies
-$ cd layer/nodejs
+$ cd lambda/layer/nodejs
 $ pnpm install
 
 // compile typescript to js
