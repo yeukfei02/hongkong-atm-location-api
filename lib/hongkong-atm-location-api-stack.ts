@@ -1,4 +1,4 @@
-import { Duration, Stack, StackProps } from "aws-cdk-lib";
+import { Duration, RemovalPolicy, Stack, StackProps } from "aws-cdk-lib";
 import * as _lambda from "aws-cdk-lib/aws-lambda";
 import * as _apigateway from "aws-cdk-lib/aws-apigateway";
 import { Construct } from "constructs";
@@ -13,14 +13,31 @@ export class HongkongAtmLocationApiStack extends Stack {
   }
 
   createInfra() {
+    // create lambda layer
+    const lambdaLayer = this.createLambdaLayer();
+
     // create lambda
-    const lambdaFunc = this.createLambda();
+    const lambdaFunc = this.createLambda(lambdaLayer);
 
     // create apigateway
     this.createApigateway(lambdaFunc);
   }
 
-  createLambda() {
+  createLambdaLayer() {
+    const lambdaLayer = new _lambda.LayerVersion(
+      this,
+      "HongkongAtmLocationApiLambdaLayer",
+      {
+        code: _lambda.Code.fromAsset("layer"),
+        compatibleRuntimes: [_lambda.Runtime.NODEJS_18_X],
+        compatibleArchitectures: [_lambda.Architecture.ARM_64],
+        removalPolicy: RemovalPolicy.RETAIN,
+      },
+    );
+    return lambdaLayer;
+  }
+
+  createLambda(lambdaLayer: _lambda.LayerVersion) {
     const lambdaFunc = new _lambda.Function(
       this,
       "HongkongAtmLocationApiLambda",
@@ -33,6 +50,7 @@ export class HongkongAtmLocationApiStack extends Stack {
         architecture: _lambda.Architecture.ARM_64,
         timeout: Duration.minutes(5),
         tracing: _lambda.Tracing.ACTIVE,
+        layers: [lambdaLayer],
         environment: {
           NODE_ENV: "production",
         },

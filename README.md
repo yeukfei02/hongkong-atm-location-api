@@ -4,7 +4,7 @@ Hong Kong atm location api in aws cdk
 
 documentation: <>
 
-api url: <>
+api url: <https://kxi6p1o415.execute-api.ap-southeast-1.amazonaws.com/prod/>
 
 ## Requirement
 
@@ -17,7 +17,11 @@ The cdk.json file tells the CDK Toolkit how to execute your app.
 
 ```zsh
 // install dependencies
-$ pnpm
+$ pnpm install
+
+// install lambda layer dependencies
+$ cd layer/nodejs
+$ pnpm install
 
 // compile typescript to js
 $ pnpm run build
