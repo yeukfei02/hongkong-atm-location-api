@@ -28,7 +28,7 @@ export class HongkongAtmLocationApiStack extends Stack {
       this,
       "HongkongAtmLocationApiLambdaLayer",
       {
-        code: _lambda.Code.fromAsset("layer"),
+        code: _lambda.Code.fromAsset("lambda/layer"),
         compatibleRuntimes: [_lambda.Runtime.NODEJS_18_X],
         compatibleArchitectures: [_lambda.Architecture.ARM_64],
         removalPolicy: RemovalPolicy.RETAIN,
