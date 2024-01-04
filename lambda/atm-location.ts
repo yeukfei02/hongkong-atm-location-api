@@ -1,20 +1,22 @@
 import { Response, Result } from "../interface/hongkong-atm-location";
 import axios from "axios";
 
-export const handler = async (event, context) => {
+export const handler = async (event: any, context: any) => {
+  console.log("event = ", event);
+
   let response = {};
 
   if (event) {
-    if (event.queryStringParameters) {
-      const lang = event.queryStringParameters.lang;
-      const result = await getHongKongAtmLocation(lang);
-      if (result) {
-        response = {
-          message: "getHongKongAtmLocation",
-          records: result.records,
-          count: result.datasize,
-        };
-      }
+    const lang = event.queryStringParameters
+      ? event.queryStringParameters.lang
+      : "tc";
+    const result = await getHongKongAtmLocation(lang);
+    if (result) {
+      response = {
+        message: "getHongKongAtmLocation",
+        records: result.records,
+        count: result.datasize,
+      };
     }
   }
 
@@ -35,8 +37,12 @@ const getHongKongAtmLocation = async (
         pageSize: 100000,
       },
     });
+    console.log("response = ", response);
+
     if (response) {
       const responseData: Response = response.data;
+      console.log("responseData = ", responseData);
+
       if (responseData) {
         result = responseData.result;
       }
