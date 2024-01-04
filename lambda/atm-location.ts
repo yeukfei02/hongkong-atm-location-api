@@ -11,15 +11,23 @@ export const handler = async (event: any, context: any) => {
       ? event.queryStringParameters.lang
       : "tc";
     const result = await getHongKongAtmLocation(lang);
+    console.log("### result = ", result);
+
     if (result) {
-      response = {
+      const data = {
         message: "getHongKongAtmLocation",
         records: result.records,
         count: result.datasize,
       };
+
+      response = {
+        statusCode: 200,
+        body: JSON.stringify(data),
+      };
     }
   }
 
+  console.log("response = ", response);
   return response;
 };
 
@@ -34,7 +42,7 @@ const getHongKongAtmLocation = async (
     const response = await axios.get(`${rootUrl}`, {
       params: {
         lang: lang || "tc",
-        pageSize: 100000,
+        pagesize: "100000",
       },
     });
     console.log("response = ", response);
