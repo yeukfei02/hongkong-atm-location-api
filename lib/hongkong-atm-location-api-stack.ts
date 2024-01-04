@@ -57,6 +57,9 @@ export class HongkongAtmLocationApiStack extends Stack {
           allowMethods: _apigateway.Cors.ALL_METHODS,
         },
         proxy: false,
+        integrationOptions: {
+          timeout: Duration.seconds(29),
+        },
       },
     );
 
