@@ -11,7 +11,6 @@ export const handler = async (event: any, context: any) => {
       ? event.queryStringParameters.lang
       : "tc";
     const result = await getHongKongAtmLocation(lang);
-    console.log("### result = ", result);
 
     if (result) {
       const data = {
@@ -45,8 +44,6 @@ const getHongKongAtmLocation = async (
         pagesize: "100000",
       },
     });
-    console.log("response = ", response);
-
     if (response) {
       const responseData: Response = response.data;
       console.log("responseData = ", responseData);
