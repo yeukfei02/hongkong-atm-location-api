@@ -2,7 +2,7 @@
 
 Hong Kong atm location api in aws cdk
 
-documentation: <>
+documentation: <https://documenter.getpostman.com/view/3827865/2s9YsGitMi>
 
 api url: <https://kxi6p1o415.execute-api.ap-southeast-1.amazonaws.com/prod/>
 
