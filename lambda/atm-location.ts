@@ -31,7 +31,7 @@ export const handler = async (event: any, context: any) => {
 };
 
 const getHongKongAtmLocation = async (
-  lang: string
+  lang: string,
 ): Promise<Result | undefined> => {
   let result;
 
