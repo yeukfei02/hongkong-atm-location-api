@@ -78,6 +78,10 @@ export class HongkongAtmLocationApiStack extends Stack {
         integrationOptions: {
           timeout: Duration.seconds(29),
         },
+        deployOptions: {
+          dataTraceEnabled: true,
+          tracingEnabled: true,
+        },
       },
     );
 
