@@ -32,7 +32,7 @@ export class HongkongAtmLocationApiStack extends Stack {
         compatibleRuntimes: [_lambda.Runtime.NODEJS_18_X],
         compatibleArchitectures: [_lambda.Architecture.ARM_64],
         removalPolicy: RemovalPolicy.RETAIN,
-      }
+      },
     );
     return lambdaLayer;
   }
@@ -54,11 +54,11 @@ export class HongkongAtmLocationApiStack extends Stack {
         environment: {
           NODE_ENV: "production",
         },
-      }
+      },
     );
 
     lambdaFunc.role?.addManagedPolicy(
-      ManagedPolicy.fromAwsManagedPolicyName("AdministratorAccess")
+      ManagedPolicy.fromAwsManagedPolicyName("AdministratorAccess"),
     );
 
     return lambdaFunc;
@@ -83,7 +83,7 @@ export class HongkongAtmLocationApiStack extends Stack {
           tracingEnabled: true,
           metricsEnabled: true,
         },
-      }
+      },
     );
 
     const api = apigateway.root.addResource("atm-location");
