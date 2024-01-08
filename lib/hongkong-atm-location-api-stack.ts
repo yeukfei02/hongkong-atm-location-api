@@ -81,6 +81,7 @@ export class HongkongAtmLocationApiStack extends Stack {
         deployOptions: {
           dataTraceEnabled: true,
           tracingEnabled: true,
+          metricsEnabled: true,
         },
       },
     );
